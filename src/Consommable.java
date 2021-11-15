@@ -1,12 +1,11 @@
-public class Consommable extends Objet {
+import java.util.Locale;
 
-    private Integer id;
+public class Consommable extends Objet {
     private TypeConsommable typeConsommable;
     private Integer points;
 
-    public Consommable(String nom, String description, Integer id, TypeConsommable typeConsommable, Integer points) {
-        super(nom, description);
-        this.id = id;
+    public Consommable(Integer objetId, String nom, String description, Integer quantite, TypeConsommable typeConsommable, Integer points) {
+        super(objetId, nom, description, quantite);
         this.typeConsommable = typeConsommable;
         this.points = points;
     }
@@ -23,12 +22,12 @@ public class Consommable extends Objet {
         }
         chaine.append(this.points);
         chaine.append(" point(s) de ");
-        chaine.append(this.typeConsommable.getType());
+        chaine.append(this.typeConsommable.name().toLowerCase());
 
         return chaine.toString();
     }
 
-    public Consommable utiliser(Entite e) {
+    public void utiliser(Entite e) {
         switch (typeConsommable) {
             case VIE:
                 e.appliquerSoin(this.points);
@@ -36,13 +35,14 @@ public class Consommable extends Objet {
             case MANA:
                 e.appliquerRechargeMana(this.points);
                 break;
-            case EXP:
+            case EXPERIENCE:
                 e.gainExperience(this.points);
                 break;
+            case DEGAT:
+                e.receiveHit(this.points);
             default:
                 break;
         }
-        return this;
     }
 
 }

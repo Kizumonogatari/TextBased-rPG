@@ -40,14 +40,13 @@ public class Jeu {
 
     }
 
-    // En faire un objet? Peut-être
+    //TODO: En faire un objet? Trèèèèèèèèèèèès probablement
     private void engagerCombat(List<Entite> combattants) {
         ChoixCombat choix;
 
         Collections.sort(combattants, Comparator.comparingInt(Entite::getInitiative).reversed());
 
         while(Utilities.compterOccurenceMonstre(combattants) != 0) {
-            //for(Entite uneEntite : combattants) {
             for(Iterator<Entite> iterator = combattants.iterator(); iterator.hasNext();) {
                 StringBuilder chaine = new StringBuilder();
                 Entite uneEntite = iterator.next();
@@ -73,9 +72,8 @@ public class Jeu {
                             System.out.println(tempMonstre.afficherCombat());
                             break;
                         case OBJETS:
-                            //TODO: Faire la classe inventaire, pour une meilleure gestion des objets
-                            //TODO: Afficher la liste d'objet consommable
-                            //TODO: Utilisation de l'objet choisi
+                            Consommable leConsommable = Utilities.saisieChoixConsommable((Joueur) uneEntite);
+                            leConsommable.utiliser(uneEntite);
                             break;
                         case FUITE:
                             //TODO: Fuite du combat

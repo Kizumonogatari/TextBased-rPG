@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -86,6 +87,30 @@ public class Utilities {
         } while(i <= 0 || i > listeMonstre.length);
 
         return listeMonstre[i-1];
+    }
+
+    public static Consommable saisieChoixConsommable(Joueur joueur) {
+        StringBuilder chaine = new StringBuilder();
+        List<Consommable> listeConsommable = new ArrayList<>();
+        Integer i = 1;
+
+        //TODO: Déplacer ce bloc dans la classe inventaire directement
+        chaine.append("Consommable disponible:\n");
+        for(Objet unObjet : joueur.getInventaire().getCollObjets().values()) {
+            if(unObjet instanceof Consommable) {
+                listeConsommable.add((Consommable) unObjet);
+                chaine.append(i);
+                chaine.append(" - ");
+                chaine.append(unObjet);
+                chaine.append("\n");
+            }
+        }
+        System.out.print(chaine);
+        do {
+            i = saisieNumeriqueUtilisateur("Quel objet utiliser? ");
+        } while (i <= 0 || i > listeConsommable.size());
+
+        return listeConsommable.get(i-1);
     }
 
     public static Joueur getJoueurFromCollection(List<Entite> listeEntite) {

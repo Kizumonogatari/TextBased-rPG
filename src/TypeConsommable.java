@@ -1,14 +1,8 @@
 public enum TypeConsommable {
 
-    VIE("Vie"), MANA("Mana"), EXP("EXP"), DEGAT("Dégats");
+    VIE, MANA, EXPERIENCE, DEGAT;
 
-    private String type;
+    TypeConsommable() {
 
-    TypeConsommable(String type) {
-        this.type = type;
-    }
-
-    public String getType() {
-        return this.type;
     }
 }

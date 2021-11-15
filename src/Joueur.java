@@ -10,8 +10,14 @@ public class Joueur extends Entite {
         this.collEquipements.put(Emplacement.BUSTE, new Armure("Cotes de mailles", "Basique mais fonctionnelle.",0, 0, 2));
     }
 
+    //TODO: Refaire la logique éventuellement
     public Equipement equiperEquipement(Emplacement emplacement, Equipement equipement) {
         if(this.getForce() >= equipement.getConditionForce() && this.getIntelligence() >= equipement.getConditionIntelligence()) {
+            Equipement tempEquipement = this.collEquipements.get(emplacement);
+            if(tempEquipement != null) {
+                this.getInventaire().ajouterObjet(equipement);
+            }
+            this.getInventaire().retirerObjet(equipement.getObjetId());
             return this.collEquipements.put(emplacement, equipement);
         } else {
             return null;

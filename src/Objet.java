@@ -1,10 +1,28 @@
 public abstract class Objet {
+    private Integer objetId;
     private String nom;
     private String description;
+    private Integer quantite;
 
-    public Objet(String nom, String description) {
+    public Objet(Integer objetId, String nom, String description, Integer quantite) {
+        this.objetId = objetId;
         this.nom = nom;
         this.description = description;
+        this.quantite = quantite;
+    }
+
+    public abstract void utiliser(Entite e);
+
+    public Integer getObjetId() {
+        return this.objetId;
+    }
+
+    public void setQuantite(Integer quantite) {
+        this.quantite = quantite;
+    }
+
+    public Integer getQuantite() {
+        return this.quantite;
     }
 
     @Override

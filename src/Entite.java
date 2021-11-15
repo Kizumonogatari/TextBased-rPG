@@ -19,7 +19,7 @@ public class Entite {
 
     private Integer defense;
 
-    protected List<Objet> collObjets;
+    private Inventaire inventaire;
     protected Map<Emplacement, Equipement> collEquipements;
 
     public Entite(String nom, Integer vie, Integer mana, Integer force, Integer intelligence, Integer initiative, Integer defense, Integer niveau) {
@@ -36,8 +36,8 @@ public class Entite {
         this.experienceProchainNiveau = 100;
         this.defense = defense;
 
-        // Initialisation des listes
-        this.collObjets = new ArrayList<>();
+        // Initialisation
+        inventaire = new Inventaire();
         this.collEquipements = new HashMap<>();
 
         // Mise en place du systeme d'equipement
@@ -66,7 +66,7 @@ public class Entite {
         return degatsInfliges;
     }
 
-    private void receiveHit(Integer hit) {
+    public void receiveHit(Integer hit) {
         if(vie - hit < 0) {
             this.vie = 0;
         } else {
@@ -98,10 +98,6 @@ public class Entite {
         } else {
             this.mana += mana;
         }
-    }
-
-    public boolean ajouterObjet(Objet unObjet) {
-        return this.collObjets.add(unObjet);
     }
 
     public void gainExperience(Integer pointsExperience) {
@@ -145,31 +141,8 @@ public class Entite {
         return this.vie > 0;
     }
 
-    public String afficherInventaire() {
-        StringBuilder chaine = new StringBuilder();
-
-        for(Objet unObjet : this.collObjets) {
-            chaine.append(unObjet.toString());
-            chaine.append("\n");
-        }
-
-        return chaine.toString();
-    }
-
-    public String afficherInventaire(String filtre) {
-        StringBuilder chaine = new StringBuilder();
-
-        if(filtre != null || !filtre.trim().isEmpty()) {
-            for(Objet unObjet : this.collObjets) {
-                if (unObjet.getClass().getSimpleName().toLowerCase().compareTo(filtre.toLowerCase()) == 0) {
-                    chaine.append(unObjet);
-                    chaine.append("\n");
-                }
-            }
-        } else {
-            chaine.append(afficherInventaire());
-        }
-        return chaine.toString();
+    public Inventaire getInventaire() {
+        return this.inventaire;
     }
 
     public String afficherCombat() {
@@ -184,6 +157,8 @@ public class Entite {
         chaine.append(this.mana);
         chaine.append("/");
         chaine.append(this.manaMax);
+        chaine.append("\t\tNv.:");
+        chaine.append(this.niveau);
 
         chaine.append("\n[");
         chaine.append(String.join("", Collections.nCopies(Utilities.calculPourcentage(this.vieMax, this.vie),":")));
