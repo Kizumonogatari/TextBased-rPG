@@ -1,23 +1,28 @@
-import java.util.Locale;
-
-public class Consommable extends Objet {
+public class Consommable extends Objet
+{
     private TypeConsommable typeConsommable;
+
     private Integer points;
 
-    public Consommable(Integer objetId, String nom, String description, Integer quantite, TypeConsommable typeConsommable, Integer points) {
+    public Consommable(Integer objetId, String nom, String description, Integer quantite, TypeConsommable typeConsommable, Integer points)
+    {
         super(objetId, nom, description, quantite);
         this.typeConsommable = typeConsommable;
         this.points = points;
     }
 
     @Override
-    public String toString() {
+    public String toString()
+    {
         StringBuilder chaine = new StringBuilder();
 
         chaine.append(super.toString());
-        if(typeConsommable == TypeConsommable.DEGAT) {
+        if (typeConsommable == TypeConsommable.DEGAT)
+        {
             chaine.append("\nInflige ");
-        } else {
+        }
+        else
+        {
             chaine.append("\nRestaure ");
         }
         chaine.append(this.points);
@@ -27,8 +32,10 @@ public class Consommable extends Objet {
         return chaine.toString();
     }
 
-    public void utiliser(Entite e) {
-        switch (typeConsommable) {
+    public void utiliser(Entite e)
+    {
+        switch (typeConsommable)
+        {
             case VIE:
                 e.appliquerSoin(this.points);
                 break;
@@ -40,6 +47,7 @@ public class Consommable extends Objet {
                 break;
             case DEGAT:
                 e.receiveHit(this.points);
+                break;
             default:
                 break;
         }
