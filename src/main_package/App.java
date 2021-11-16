@@ -1,3 +1,5 @@
+package main_package;
+
 public class App
 {
     public static void main(String[] args)
@@ -5,5 +7,6 @@ public class App
         Jeu monJeu = Jeu.getInstance();
         monJeu.initialisation();
         monJeu.lancerLaBoucleDeJeu();
+        System.exit(0);
     }
 }

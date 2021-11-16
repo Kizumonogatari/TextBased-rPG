@@ -1,3 +1,5 @@
+package main_package;
+
 public class Armure extends Equipement {
     private Integer defense;
 

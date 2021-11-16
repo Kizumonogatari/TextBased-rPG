@@ -1,7 +1,9 @@
+package main_package;
+
 public enum TypeMonstre {
 
     SQUELETTE("Squelette", "Revenu d'entre les morts, on peut entendre leurs claquettis au loin."),
-    LOUP("Loup", "Bête féroce et sauvage.");
+    LOUP("main_package.Loup", "Bête féroce et sauvage.");
 
     private String nom;
     private String description;

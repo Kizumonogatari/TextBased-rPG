@@ -1,3 +1,5 @@
+package main_package;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -27,7 +29,7 @@ public class Zone
         {
             for (int j = 0; j < this.HAUTEUR; j++)
             {
-                Position unePosition = new Position(i, j);
+                Position unePosition = new Position(j, i);
                 this.collSecteurs.put(unePosition, new Secteur(unePosition, String.valueOf(i).concat(String.valueOf(j)), ""));
             }
         }
@@ -35,7 +37,6 @@ public class Zone
 
     public Secteur getSecteur(Position position)
     {
-        System.out.println(position.toString());
         return this.collSecteurs.get(position);
     }
 

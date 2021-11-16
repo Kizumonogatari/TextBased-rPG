@@ -1,3 +1,5 @@
+package main_package;
+
 public class Equipement extends Objet {
     private final Integer forceCondition;
     private final Integer intelligenceCondition;

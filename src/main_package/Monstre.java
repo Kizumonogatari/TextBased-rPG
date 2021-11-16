@@ -1,3 +1,5 @@
+package main_package;
+
 public class Monstre extends Entite {
 
     public Monstre(String nom, Integer vie, Integer mana, Integer force, Integer intelligence, Integer initiative, Integer defense, Integer niveau) {

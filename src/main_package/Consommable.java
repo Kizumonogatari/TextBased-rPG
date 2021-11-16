@@ -1,3 +1,5 @@
+package main_package;
+
 public class Consommable extends Objet
 {
     private TypeConsommable typeConsommable;

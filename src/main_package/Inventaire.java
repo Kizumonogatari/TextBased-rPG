@@ -1,3 +1,5 @@
+package main_package;
+
 import java.util.Map;
 import java.util.HashMap;
 
@@ -53,7 +55,7 @@ public class Inventaire {
         return this.collObjets.get(objetId);
     }
 
-    private TypeObjet controlerTypeObjet(String typeObjet) throws Exception {
+    private TypeObjet controlerTypeObjet(String typeObjet) throws TypeObjetException {
         if(typeObjet != null && !typeObjet.trim().isEmpty()) {
             for(TypeObjet unTypeObjet : TypeObjet.values()) {
                 if(unTypeObjet.name().toLowerCase().compareTo(typeObjet.toLowerCase()) == 0) {
@@ -61,21 +63,27 @@ public class Inventaire {
                 }
             }
         }
-        //TODO: Créer une exception personnalisée
-        throw new Exception("Le type objet `" + typeObjet + "` n'existe pas.");
+        throw new TypeObjetException("Le type objet `" + typeObjet + "` n'existe pas.");
     }
 
     public String afficherObjets(String typeObjet) {
         StringBuilder chaine = new StringBuilder();
         try {
             for(Objet unObjet : this.collObjets.values()) {
-                if(unObjet.getClass().getSimpleName().toLowerCase().compareTo(typeObjet.toLowerCase()) == 0) {
+                if(typeObjet != null && !typeObjet.trim().isEmpty()) {
+                    controlerTypeObjet(typeObjet);
+                    if(unObjet.getClass().getSimpleName().toLowerCase().compareTo(typeObjet.toLowerCase()) == 0)
+                    {
+                        chaine.append(unObjet);
+                        chaine.append("\n");
+                    }
+                } else {
                     chaine.append(unObjet);
                     chaine.append("\n");
                 }
             }
-        } catch (Exception e) {
-
+        } catch (TypeObjetException e) {
+            chaine.append("Erreur: " + e.getMessage());
         }
         return chaine.toString();
     }

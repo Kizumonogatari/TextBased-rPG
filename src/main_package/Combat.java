@@ -1,3 +1,5 @@
+package main_package;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -156,7 +158,7 @@ public class Combat
         }
         else
         {
-            // TODO: Exception si y'a rien dans l'enum ChoixCombat
+            // TODO: Exception si y'a rien dans l'enum main_package.ChoixCombat
             return null;
         }
     }
@@ -198,7 +200,7 @@ public class Combat
         Integer i = 1;
 
         // TODO: Déplacer ce bloc dans la classe inventaire directement
-        chaine.append("Consommable disponible:\n");
+        chaine.append("main_package.Consommable disponible:\n");
         for (Objet unObjet : joueur.getInventaire().getCollObjets().values())
         {
             if (unObjet instanceof Consommable)

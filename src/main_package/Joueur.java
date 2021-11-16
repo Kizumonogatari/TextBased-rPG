@@ -1,3 +1,5 @@
+package main_package;
+
 public class Joueur extends Entite
 {
 
@@ -18,6 +20,17 @@ public class Joueur extends Entite
     public void setPosition(Position position)
     {
         this.position = position;
+    }
+
+    public void seDeplacer(Zone laZone, Direction direction) {
+        Position positionTemp = new Position(this.getPosition().getX()+ direction.getX(),this.getPosition().getY()+ direction.getY());
+        Secteur leSecteur = laZone.getSecteur(positionTemp.getX(), positionTemp.getY());
+        if(leSecteur != null) {
+            laZone.getSecteur(this.position).supprimerEntite(this);
+            leSecteur.ajouterEntite(this);
+        } else {
+            System.out.println("Erreur, out of bound / secteur inexistant");
+        }
     }
 
     // TODO: Refaire la logique éventuellement

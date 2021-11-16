@@ -1,3 +1,5 @@
+package main_package;
+
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
@@ -26,8 +28,6 @@ public class Entite
 
     private Integer experienceProchainNiveau;
 
-    private Integer defense;
-
     private Inventaire inventaire;
 
     protected Map<Emplacement, Equipement> collEquipements;
@@ -46,7 +46,6 @@ public class Entite
         this.niveau = niveau;
         this.experience = 0;
         this.experienceProchainNiveau = 100;
-        this.defense = defense;
 
         // Initialisation
         inventaire = new Inventaire();
@@ -75,9 +74,8 @@ public class Entite
         }
 
         // TODO: Formule de défense pour encaisser les dégats
-        degatsInfliges -= e.defense;
+        // TODO: Faire une méthode qui renvois le total de défense via armure
 
-        // Attaque de l'entite adverse
         e.receiveHit(degatsInfliges);
 
         return degatsInfliges;
@@ -150,6 +148,7 @@ public class Entite
         {
             this.gainExperience(experienceRestant);
         }
+        //TODO: Amélioration des stats
     }
 
     public void setNom(String nom)
@@ -167,11 +166,19 @@ public class Entite
         return this.force;
     }
 
+    public void setForce(Integer force) {
+        this.force = force;
+    }
+
     public Integer getIntelligence()
     {
         return this.intelligence;
     }
 
+    public void setIntelligence(Integer intelligence)
+    {
+        this.intelligence = intelligence;
+    }
     public Integer getInitiative()
     {
         return this.initiative;
@@ -187,12 +194,51 @@ public class Entite
         return this.inventaire;
     }
 
+    public String afficherStatistiques() {
+        StringBuilder chaine = new StringBuilder();
+
+        chaine.append("[Force: ");
+        chaine.append(this.force);
+        chaine.append("\tIntelligence: ");
+        chaine.append(this.intelligence);
+        chaine.append("\tInitiative: ");
+        chaine.append(this.initiative);
+        chaine.append("]\n");
+
+        return chaine.toString();
+    }
+
+    public String afficherEquipement() {
+        StringBuilder chaine = new StringBuilder();
+
+        for(Map.Entry<Emplacement, Equipement> unEquipement : this.collEquipements.entrySet()) {
+            chaine.append("\t[");
+            chaine.append(unEquipement.getKey().getNom());
+            chaine.append(": ");
+            if(unEquipement.getValue() != null) {
+                chaine.append(unEquipement.getValue().getNom());
+                if(unEquipement.getValue() instanceof Arme) {
+                    chaine.append("\tDégats: ");
+                    chaine.append(((Arme) unEquipement.getValue()).getDegat());
+                } else if(unEquipement.getValue() instanceof Armure) {
+                    chaine.append("\tDéfense: ");
+                    chaine.append(((Armure) unEquipement.getValue()).getDefense());
+                }
+            } else {
+                chaine.append("Rien");
+            }
+            chaine.append("]\n");
+        }
+
+        return chaine.toString();
+    }
+
     public String afficherCombat()
     {
         StringBuilder chaine = new StringBuilder();
 
         chaine.append(this.nom);
-        chaine.append("\tPdV: ");
+        chaine.append("\t\tPdV: ");
         chaine.append(this.vie);
         chaine.append("/");
         chaine.append(this.vieMax);
@@ -215,28 +261,26 @@ public class Entite
     public String toString()
     {
         StringBuilder chaine = new StringBuilder();
-        chaine.append("Nom: ");
+        chaine.append("[Nom: ");
         chaine.append(this.nom);
 
-        chaine.append("\n\t\tVie:");
+        chaine.append("\tVie:");
         chaine.append(this.vie);
         chaine.append("/");
         chaine.append(this.vieMax);
 
-        chaine.append(" - ");
-        chaine.append("Mana: ");
+        chaine.append("\tMana: ");
         chaine.append(this.mana);
         chaine.append("/");
         chaine.append(this.manaMax);
 
-        for (Equipement unEquipement : this.collEquipements.values())
-        {
-            if (unEquipement != null)
-            {
-                chaine.append("\n");
-                chaine.append(unEquipement);
-            }
-        }
+        chaine.append("\t Nv.: ");
+        chaine.append(this.niveau);
+        chaine.append(" XP: ");
+        chaine.append(this.experience);
+        chaine.append("/");
+        chaine.append(this.experienceProchainNiveau);
+        chaine.append("]\n");
 
         return chaine.toString();
     }

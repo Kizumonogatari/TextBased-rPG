@@ -1,3 +1,5 @@
+package main_package;
+
 public abstract class Objet {
     private Integer objetId;
     private String nom;
@@ -15,6 +17,10 @@ public abstract class Objet {
 
     public Integer getObjetId() {
         return this.objetId;
+    }
+
+    public String getNom() {
+        return this.nom;
     }
 
     public void setQuantite(Integer quantite) {

@@ -1,3 +1,5 @@
+package main_package;
+
 public class MonstreFactory {
     public Monstre creerMonstre(TypeMonstre typeMonstre) {
         Monstre tempMonstre = null;

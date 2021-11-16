@@ -1,3 +1,5 @@
+package main_package;
+
 public enum ChoixCombat {
     ATTAQUE(1, "Attaquer"), OBJETS(2, "Objets"), FUITE(3, "Fuite");
 

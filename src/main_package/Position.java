@@ -1,9 +1,10 @@
+package main_package;
 
 public class Position
 {
-    private Integer x;
+    private final Integer x;
 
-    private Integer y;
+    private final Integer y;
 
     public Position()
     {

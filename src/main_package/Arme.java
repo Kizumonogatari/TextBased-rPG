@@ -1,3 +1,5 @@
+package main_package;
+
 public class Arme extends Equipement {
 
     private Integer degat;
