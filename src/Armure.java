@@ -1,8 +1,8 @@
 public class Armure extends Equipement {
     private Integer defense;
 
-    public Armure(String nom, String description, Integer forceCondition, Integer intelligenceCondition, Integer defense) {
-        super(nom, description, forceCondition, intelligenceCondition);
+    public Armure(Integer objetId, String nom, String description, Integer forceCondition, Integer intelligenceCondition, Emplacement emplacement, Integer defense) {
+        super(objetId, nom, description, forceCondition, intelligenceCondition, emplacement);
         this.defense = defense;
     }
 

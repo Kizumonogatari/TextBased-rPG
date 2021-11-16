@@ -6,8 +6,8 @@ public class Joueur extends Entite {
     }
 
     private void initJoueur() {
-        this.collEquipements.put(Emplacement.MAIN_PRINCIPAL, new Arme("Petite épée", "Une simple épée toute fine.", 0, 0, 3));
-        this.collEquipements.put(Emplacement.BUSTE, new Armure("Cotes de mailles", "Basique mais fonctionnelle.",0, 0, 2));
+        //this.collEquipements.put(Emplacement.MAIN_PRINCIPAL, new Arme("Petite épée", "Une simple épée toute fine.", 0, 0, 3));
+        //this.collEquipements.put(Emplacement.BUSTE, new Armure("Cotes de mailles", "Basique mais fonctionnelle.",0, 0, 2));
     }
 
     //TODO: Refaire la logique éventuellement

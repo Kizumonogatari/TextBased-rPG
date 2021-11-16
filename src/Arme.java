@@ -2,8 +2,8 @@ public class Arme extends Equipement {
 
     private Integer degat;
 
-    public Arme(String nom, String description, Integer forceCondition, Integer intelligenceCondition, Integer degat) {
-        super(nom, description, forceCondition, intelligenceCondition);
+    public Arme(Integer objetId, String nom, String description, Integer forceCondition, Integer intelligenceCondition, Emplacement emplacement, Integer degat) {
+        super(objetId, nom, description, forceCondition, intelligenceCondition, emplacement);
         this.degat = degat;
     }
 

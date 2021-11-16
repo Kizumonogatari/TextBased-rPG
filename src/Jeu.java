@@ -18,6 +18,8 @@ public class Jeu {
     public void initialisation() {
         String nom;
 
+        Utilities.afficherTextColor();
+
         System.out.println("Message bienvenue blablabla");
         nom = Utilities.saisieChaineUtilisateur("Veuillez entrer le nom du héros: ");
         leJoueur = new Joueur(nom, 10, 5, 2,2, 110,0,1);

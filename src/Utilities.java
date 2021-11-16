@@ -162,6 +162,14 @@ public class Utilities {
         } else {
             return 0;
         }
+    }
 
+    public static void afficherTextColor() {
+        String hello = "Hello world!";
+
+        String ANSI_RESET = "\u001B[0m";
+        String ANSI_YELLOW = "\u001B[33m";
+
+        System.out.println(ANSI_YELLOW + " " + hello + ANSI_RESET);
     }
 }
